@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using Cohesion_DTO;
-
+using System.Linq;
 
 
 namespace Cohesion_Project
@@ -15,8 +15,8 @@ namespace Cohesion_Project
     {
         private List<EQUIP_DOWN_DTO> edList;
         private Srv_ED srv_ED = new Srv_ED();
-        
-        
+        List<CODE_DATA_MST_DTO> list;
+
 
         public Frm_NonOper()
         {
@@ -26,7 +26,9 @@ namespace Cohesion_Project
 
         private void Frm_NonOper_Load(object sender, EventArgs e)
         {
-       
+            list = srv_ED.Combo();
+            comboBox1.Items.AddRange(list.Select((Q)=> Q.KEY_1).ToArray());
+            comboBox2.Items.AddRange(srv_ED.EQCombo().Select((q) => q.EQUIPMENT_CODE).ToArray());
             DgvInit();
             DataGridViewFill();
         }
@@ -52,8 +54,8 @@ namespace Cohesion_Project
             DgvUtil.AddTextCol(dataGridView1, "비가동 주석", "DT_COMMENT", width: 130, readOnly: true);
             DgvUtil.AddTextCol(dataGridView1, "비가동 등록자", "DT_USER_ID", width: 130, readOnly: true);
             DgvUtil.AddTextCol(dataGridView1, "조치 내역", "ACTION_COMMENT", width: 130, readOnly: true);
-            DgvUtil.AddTextCol(dataGridView1, "확인 시간", "CONFIRM_TIME", width: 130, readOnly: true);
-            DgvUtil.AddTextCol(dataGridView1, "확인자", "CONFIRM_USER_ID", width: 130, readOnly: true);
+       //     DgvUtil.AddTextCol(dataGridView1, "확인 시간", "CONFIRM_TIME", width: 130, readOnly: true);
+          // DgvUtil.AddTextCol(dataGridView1, "확인자", "CONFIRM_USER_ID", width: 130, readOnly: true);
             dataGridView1.Font = new Font("맑은 고딕", 10, FontStyle.Bold);
 
 
@@ -79,10 +81,10 @@ namespace Cohesion_Project
         }
         private void button3_Click(object sender, EventArgs e)
         {
-            string dtFrom = dateTimePicker3.Value.ToString("yyyy-MM-dd");
-            DateTime from = Convert.ToDateTime(dtFrom);
-            string dtTo = dateTimePicker4.Value.ToString("yyyy-MM-dd");
-            DateTime to = Convert.ToDateTime(dtTo);
+            string dtFrom = dateTimePicker3.Value.ToString("yyyyMMdd");
+
+            string dtTo = dateTimePicker4.Value.ToString("yyyyMMdd");
+
 
             edList = srv_ED.SelectEDown1(dtFrom, dtTo);
            // var dtlist = edList.FindAll((o) => Convert.ToDateTime(o.DT_START_TIME) < from && Convert.ToDateTime(o.DT_START_TIME) > to);
@@ -93,18 +95,22 @@ namespace Cohesion_Project
 
         private void button1_Click(object sender, EventArgs e)
         {
+
             EQUIP_DOWN_DTO dto = new EQUIP_DOWN_DTO();
             {
-                dto.EQUIPMENT_CODE = textBox2.Text;
-                dto.DT_CODE = DateTime.Now.ToString("yyyy-MM-dd-hh-mm");
+                dto.EQUIPMENT_CODE = comboBox2.Text;
+                dto.DT_CODE = comboBox1.Text;
                 dto.DT_COMMENT = textBox3.Text;
-                dto.DT_DATE = textBox1.Text;
+                dto.DT_TIME = Convert.ToDecimal(textBox1.Text);
                 dto.DT_START_TIME = dateTimePicker1.Value;
                 dto.DT_END_TIME = dateTimePicker2.Value;
                 dto.ACTION_COMMENT = textBox8.Text;
-              //  dto.CONFIRM_TIME =  null;
-             //   dto.CONFIRM_USER_ID = null;
-               
+                dto.DT_USER_ID = "김민식";
+                dto.DT_DATE = DateTime.Now.ToString("yyyyMMdd");
+                //  dto.CONFIRM_TIME =  null;
+                //  dto.CONFIRM_USER_ID = "김민식";
+
+
 
 
             }
@@ -127,27 +133,16 @@ namespace Cohesion_Project
             TimeSpan timedipp = (dateTimePicker2.Value) - (dateTimePicker1.Value);
            // timedipp = TimeSpan.FromMinutes(Convert.ToDouble(timedipp));
 
-            textBox1.Text = timedipp.ToString();
+            textBox1.Text = timedipp.TotalMinutes.ToString().Split('.')[0];
 
         }
 
-        private void button4_Click(object sender, EventArgs e)
+
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DateTime tb4 = Convert.ToDateTime(textBox4.Text);
-            // DateTime dt = Convert.ToDateTime(tb4).AddMinutes(Convert.ToDouble(textBox4.Text));
-            TimeSpan timedipp = dateTimePicker2.Value - tb4;
-
-            textBox1.Text = timedipp.ToString();
+            string str = list.Find((q) => q.KEY_1.Equals(comboBox1.Text)).DATA_1;
+            textBox7.Text = str;
         }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            DateTime tb4 = Convert.ToDateTime(textBox4.Text);
-           
-            DateTime timedipp = dateTimePicker2.Value.AddMinutes(Convert.ToDouble(tb4));
-            textBox1.Text = timedipp.ToString();
-        }
-
-
     }
 }

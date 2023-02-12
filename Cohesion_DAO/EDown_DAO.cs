@@ -32,7 +32,7 @@ namespace Cohesion_DAO
             try
             {
                 SqlCommand cmd = new SqlCommand();
-                string sql = "Select EQUIPMENT_CODE, DT_DATE, DT_START_TIME, DT_END_TIME, DT_TIME, DT_CODE, DT_COMMENT, DT_USER_ID, ACTION_COMMENT, CONFIRM_TIME, CONFIRM_USER_ID from EQUIP_DOWN_HIS";
+                string sql = "Select EQUIPMENT_CODE, DT_DATE, DT_START_TIME, DT_END_TIME, DT_TIME, DT_CODE, DT_COMMENT, DT_USER_ID, ACTION_COMMENT  from EQUIP_DOWN_HIS";
 
                 
                 cmd.CommandText = sql.ToString();
@@ -60,7 +60,7 @@ namespace Cohesion_DAO
             try
             {
                 SqlCommand cmd = new SqlCommand();
-                string sql = "Select EQUIPMENT_CODE, DT_DATE, DT_START_TIME, DT_END_TIME, DT_TIME, DT_CODE, DT_COMMENT, DT_USER_ID, ACTION_COMMENT, CONFIRM_TIME, CONFIRM_USER_ID from EQUIP_DOWN_HIS";
+                string sql = "Select EQUIPMENT_CODE, DT_DATE, DT_START_TIME, DT_END_TIME, DT_TIME, DT_CODE, DT_COMMENT, DT_USER_ID, ACTION_COMMENT from EQUIP_DOWN_HIS";
 
                 cmd.CommandText = sql.ToString();
                 cmd.Connection = conn;
@@ -87,8 +87,8 @@ namespace Cohesion_DAO
             try
             {
                 SqlCommand cmd = new SqlCommand();
-                string sql = "Select EQUIPMENT_CODE, DT_DATE, DT_START_TIME, DT_END_TIME, DT_TIME, DT_CODE, DT_COMMENT, DT_USER_ID, ACTION_COMMENT, CONFIRM_TIME, CONFIRM_USER_ID from EQUIP_DOWN_HIS" +
-                            "  where Convert(datetime , DT_START_TIME,3)   >= @from  and Convert(datetime , DT_START_TIME,3)  <= @to";
+                string sql = "Select EQUIPMENT_CODE, DT_DATE, DT_START_TIME, DT_END_TIME, DT_TIME, DT_CODE, DT_COMMENT, DT_USER_ID, ACTION_COMMENT  from EQUIP_DOWN_HIS" +
+                            "  where convert(datetime, DT_DATE, 23) between convert(datetime, @from, 23) and convert(datetime, @to, 23)";
 
 
                 cmd.Parameters.AddWithValue("@from", from);
@@ -118,9 +118,10 @@ namespace Cohesion_DAO
             try
             {
                 conn.Open();
-                string sql = @"insert into EQUIP_DOWN_HIS(EQUIPMENT_CODE, DT_DATE, DT_START_TIME, DT_END_TIME, DT_TIME, DT_CODE, DT_COMMENT, DT_USER_ID, ACTION_COMMENT, CONFIRM_TIME, CONFIRM_USER_ID)
-values (@EQUIPMENT_CODE, @DT_DATE, @DT_START_TIME, @DT_END_TIME, @DT_CODE, @DT_COMMENT, @DT_USER_ID, @ACTION_COMMENT, @CONFIRM_TIME, @CONFIRM_USER_ID";
+                string sql = @"insert into EQUIP_DOWN_HIS(EQUIPMENT_CODE, DT_DATE, DT_START_TIME, DT_END_TIME, DT_TIME, DT_CODE, DT_COMMENT, DT_USER_ID, ACTION_COMMENT)
+values (@EQUIPMENT_CODE, @DT_DATE, @DT_START_TIME, @DT_END_TIME, @DT_TIME, @DT_CODE, @DT_COMMENT, @DT_USER_ID, @ACTION_COMMENT )";
                 SqlCommand cmd = Helper.UpsertCmdValue<EQUIP_DOWN_DTO>(dto, sql, conn);
+            
                 int result = cmd.ExecuteNonQuery();
                 return result > 0;
             }
@@ -133,6 +134,68 @@ values (@EQUIPMENT_CODE, @DT_DATE, @DT_START_TIME, @DT_END_TIME, @DT_CODE, @DT_C
             {
                 conn.Close();
             }
+        }
+
+        public List<CODE_DATA_MST_DTO> Combo()
+        {
+            List<CODE_DATA_MST_DTO> list = null;
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                string sql = @"select CODE_TABLE_NAME, KEY_1, KEY_2, KEY_3, DATA_1, DATA_2, DATA_3, DATA_4, DATA_5, DISPLAY_SEQ, CREATE_TIME, CREATE_USER_ID, UPDATE_TIME, UPDATE_USER_ID
+from CODE_DATA_MST
+where CODE_TABLE_NAME = @CODE_TABLE_NAME";
+
+
+                cmd.Parameters.AddWithValue("@CODE_TABLE_NAME", "CM_DT_CODE");
+
+                cmd.CommandText = sql.ToString();
+                cmd.Connection = conn;
+                conn.Open();
+                list = Helper.DataReaderMapToList<CODE_DATA_MST_DTO>(cmd.ExecuteReader());
+            }
+
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.StackTrace);
+                Debug.WriteLine(err.Message);
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return list;
+        }
+
+        public List<EQUIPMENT_MST_DTO> EQCombo()
+        {
+            List<EQUIPMENT_MST_DTO> list = null;
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                string sql = @"select EQUIPMENT_CODE, EQUIPMENT_NAME, EQUIPMENT_TYPE, EQUIPMENT_STATUS, LAST_DOWN_TIME, CREATE_TIME, CREATE_USER_ID, UPDATE_TIME, UPDATE_USER_ID
+from EQUIPMENT_MST
+";
+
+
+                cmd.CommandText = sql.ToString();
+                cmd.Connection = conn;
+                conn.Open();
+                list = Helper.DataReaderMapToList<EQUIPMENT_MST_DTO>(cmd.ExecuteReader());
+            }
+
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.StackTrace);
+                Debug.WriteLine(err.Message);
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return list;
         }
     }
 

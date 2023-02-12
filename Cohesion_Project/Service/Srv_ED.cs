@@ -46,6 +46,22 @@ namespace Cohesion_Project
             return result;
         }
 
+        public List<CODE_DATA_MST_DTO> Combo()
+        {
+            EDown_DAO dao = new EDown_DAO();
+            List<CODE_DATA_MST_DTO> list = dao.Combo();
+            dao.Dispose();
+            return list;
+        }
+
+        public List<EQUIPMENT_MST_DTO> EQCombo()
+        {
+            EDown_DAO dao = new EDown_DAO();
+            List<EQUIPMENT_MST_DTO> list = dao.EQCombo();
+            dao.Dispose();
+            return list;
+        }
+
 
     }
 }

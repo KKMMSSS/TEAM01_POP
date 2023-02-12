@@ -34,7 +34,6 @@ namespace Cohesion_Project
             this.label12 = new System.Windows.Forms.Label();
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
@@ -49,9 +48,9 @@ namespace Cohesion_Project
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -60,18 +59,22 @@ namespace Cohesion_Project
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.comboBox2);
             this.panel1.Controls.Add(this.button3);
             this.panel1.Controls.Add(this.dateTimePicker4);
             this.panel1.Controls.Add(this.dateTimePicker3);
+            this.panel1.Controls.Add(this.label7);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Size = new System.Drawing.Size(1454, 102);
             this.panel1.Controls.SetChildIndex(this.label1, 0);
             this.panel1.Controls.SetChildIndex(this.label6, 0);
             this.panel1.Controls.SetChildIndex(this.label5, 0);
+            this.panel1.Controls.SetChildIndex(this.label7, 0);
             this.panel1.Controls.SetChildIndex(this.dateTimePicker3, 0);
             this.panel1.Controls.SetChildIndex(this.dateTimePicker4, 0);
             this.panel1.Controls.SetChildIndex(this.button3, 0);
+            this.panel1.Controls.SetChildIndex(this.comboBox2, 0);
             // 
             // panel2
             // 
@@ -88,9 +91,7 @@ namespace Cohesion_Project
             // 
             this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel3.Controls.Add(this.button4);
-            this.panel3.Controls.Add(this.button2);
-            this.panel3.Controls.Add(this.textBox4);
+            this.panel3.Controls.Add(this.comboBox1);
             this.panel3.Controls.Add(this.textBox3);
             this.panel3.Controls.Add(this.label4);
             this.panel3.Controls.Add(this.textBox1);
@@ -100,7 +101,6 @@ namespace Cohesion_Project
             this.panel3.Controls.Add(this.label12);
             this.panel3.Controls.Add(this.textBox7);
             this.panel3.Controls.Add(this.label15);
-            this.panel3.Controls.Add(this.textBox2);
             this.panel3.Controls.Add(this.label16);
             this.panel3.Controls.Add(this.label17);
             this.panel3.Controls.Add(this.label13);
@@ -111,7 +111,6 @@ namespace Cohesion_Project
             this.panel3.Controls.SetChildIndex(this.label13, 0);
             this.panel3.Controls.SetChildIndex(this.label17, 0);
             this.panel3.Controls.SetChildIndex(this.label16, 0);
-            this.panel3.Controls.SetChildIndex(this.textBox2, 0);
             this.panel3.Controls.SetChildIndex(this.label15, 0);
             this.panel3.Controls.SetChildIndex(this.textBox7, 0);
             this.panel3.Controls.SetChildIndex(this.label12, 0);
@@ -121,10 +120,8 @@ namespace Cohesion_Project
             this.panel3.Controls.SetChildIndex(this.textBox1, 0);
             this.panel3.Controls.SetChildIndex(this.label4, 0);
             this.panel3.Controls.SetChildIndex(this.textBox3, 0);
-            this.panel3.Controls.SetChildIndex(this.textBox4, 0);
-            this.panel3.Controls.SetChildIndex(this.button2, 0);
             this.panel3.Controls.SetChildIndex(this.label3, 0);
-            this.panel3.Controls.SetChildIndex(this.button4, 0);
+            this.panel3.Controls.SetChildIndex(this.comboBox1, 0);
             // 
             // label1
             // 
@@ -209,15 +206,6 @@ namespace Cohesion_Project
             this.label15.Text = "◾ 비가동 명";
             this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // textBox2
-            // 
-            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.textBox2.Location = new System.Drawing.Point(122, 109);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(265, 29);
-            this.textBox2.TabIndex = 43;
-            // 
             // label16
             // 
             this.label16.BackColor = System.Drawing.Color.Transparent;
@@ -274,7 +262,6 @@ namespace Cohesion_Project
             this.dateTimePicker2.Size = new System.Drawing.Size(265, 29);
             this.dateTimePicker2.TabIndex = 57;
             this.dateTimePicker2.ValueChanged += new System.EventHandler(this.dateTimePicker2_ValueChanged);
-          
             // 
             // textBox8
             // 
@@ -294,18 +281,17 @@ namespace Cohesion_Project
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox1.Enabled = false;
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.textBox1.Location = new System.Drawing.Point(871, 49);
+            this.textBox1.Location = new System.Drawing.Point(724, 49);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(79, 29);
             this.textBox1.TabIndex = 58;
-           
             // 
             // label4
             // 
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(953, 49);
+            this.label4.Location = new System.Drawing.Point(806, 49);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(33, 32);
             this.label4.TabIndex = 59;
@@ -330,7 +316,7 @@ namespace Cohesion_Project
             this.dateTimePicker4.CustomFormat = "yyyy-MM-dd HH:mm:ss";
             this.dateTimePicker4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.dateTimePicker4.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker4.Location = new System.Drawing.Point(426, 50);
+            this.dateTimePicker4.Location = new System.Drawing.Point(806, 46);
             this.dateTimePicker4.Name = "dateTimePicker4";
             this.dateTimePicker4.Size = new System.Drawing.Size(231, 29);
             this.dateTimePicker4.TabIndex = 63;
@@ -340,7 +326,7 @@ namespace Cohesion_Project
             this.dateTimePicker3.CustomFormat = "yyyy-MM-dd HH:mm:ss";
             this.dateTimePicker3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.dateTimePicker3.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker3.Location = new System.Drawing.Point(122, 49);
+            this.dateTimePicker3.Location = new System.Drawing.Point(502, 45);
             this.dateTimePicker3.Name = "dateTimePicker3";
             this.dateTimePicker3.Size = new System.Drawing.Size(231, 29);
             this.dateTimePicker3.TabIndex = 62;
@@ -350,7 +336,7 @@ namespace Cohesion_Project
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(13, 49);
+            this.label5.Location = new System.Drawing.Point(393, 45);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(138, 32);
             this.label5.TabIndex = 60;
@@ -362,7 +348,7 @@ namespace Cohesion_Project
             this.label6.BackColor = System.Drawing.Color.Transparent;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label6.ForeColor = System.Drawing.Color.Black;
-            this.label6.Location = new System.Drawing.Point(359, 50);
+            this.label6.Location = new System.Drawing.Point(739, 46);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(138, 32);
             this.label6.TabIndex = 61;
@@ -378,7 +364,7 @@ namespace Cohesion_Project
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.button3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.button3.Image = global::Cohesion_Project.Properties.Resources.Search;
-            this.button3.Location = new System.Drawing.Point(663, 50);
+            this.button3.Location = new System.Drawing.Point(1043, 46);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(55, 29);
             this.button3.TabIndex = 64;
@@ -387,37 +373,34 @@ namespace Cohesion_Project
             this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // textBox4
+            // comboBox1
             // 
-            this.textBox4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.textBox4.Location = new System.Drawing.Point(724, 49);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(49, 29);
-            this.textBox4.TabIndex = 61;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(122, 114);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(265, 24);
+            this.comboBox1.TabIndex = 64;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
-            // button2
+            // comboBox2
             // 
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(779, 49);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(34, 32);
-            this.button2.TabIndex = 62;
-            this.button2.Text = "+";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(117, 53);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(265, 24);
+            this.comboBox2.TabIndex = 66;
             // 
-            // button4
+            // label7
             // 
-            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button4.Location = new System.Drawing.Point(819, 49);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(34, 32);
-            this.button4.TabIndex = 63;
-            this.button4.Text = "ㅡ";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.label7.BackColor = System.Drawing.Color.Transparent;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label7.ForeColor = System.Drawing.Color.Black;
+            this.label7.Location = new System.Drawing.Point(13, 47);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(138, 32);
+            this.label7.TabIndex = 65;
+            this.label7.Text = "◾ 설비 코드";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // Frm_NonOper
             // 
@@ -442,7 +425,6 @@ namespace Cohesion_Project
       protected System.Windows.Forms.Label label12;
       protected System.Windows.Forms.TextBox textBox7;
       protected System.Windows.Forms.Label label15;
-      protected System.Windows.Forms.TextBox textBox2;
       protected System.Windows.Forms.Label label16;
       protected System.Windows.Forms.Label label17;
       protected System.Windows.Forms.Label label13;
@@ -457,8 +439,8 @@ namespace Cohesion_Project
         protected System.Windows.Forms.Label label5;
         protected System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button2;
-        protected System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboBox2;
+        protected System.Windows.Forms.Label label7;
     }
 }
