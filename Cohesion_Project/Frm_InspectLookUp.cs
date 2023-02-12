@@ -26,6 +26,7 @@ namespace Cohesion_Project
         {
             DataGridView();
             DgvDataBinding();
+            GetCategoriry();
         }
 
         private void DataGridView()
@@ -56,6 +57,17 @@ namespace Cohesion_Project
             inspect = srv.GetInspectHisAllList();
             dgvInspectList.DataSource = null;
             dgvInspectList.DataSource = inspect;
+        }
+
+        private void Btn_Close_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void GetCategoriry()
+        {
+            var list = srv.GetLOTInspectID();
+            cboCategory.Items.AddRange(list.Select((p)=>p.LOT_ID).ToArray());
         }
     }
 }
