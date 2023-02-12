@@ -95,26 +95,27 @@ namespace Cohesion_Project
         {
             EQUIP_DOWN_DTO dto = new EQUIP_DOWN_DTO();
             {
-               // dto.DT_CODE = 
+                dto.EQUIPMENT_CODE = textBox2.Text;
+                dto.DT_CODE = DateTime.Now.ToString("yyyy-MM-dd-hh-mm");
                 dto.DT_COMMENT = textBox3.Text;
                 dto.DT_DATE = textBox1.Text;
                 dto.DT_START_TIME = dateTimePicker1.Value;
                 dto.DT_END_TIME = dateTimePicker2.Value;
                 dto.ACTION_COMMENT = textBox8.Text;
-               // dto.CONFIRM_TIME =
-              // dto.CONFIRM_USER_ID =
-                dto.EQUIPMENT_CODE = textBox2.Text;
+              //  dto.CONFIRM_TIME =  null;
+             //   dto.CONFIRM_USER_ID = null;
+               
 
 
             }
-            //bool result = srv_ED.InsertEDown(dto);
-            //if (result)
-            //{
-            //    MboxUtil.MboxInfo("공정이 등록되었습니다.");
-            //    this.DgvFill();
-            //}
-            //else
-            //    MboxUtil.MboxError("오류가 발생했습니다.");
+            bool result = srv_ED.InsertEDown(dto);
+            if (result)
+            {
+                MboxUtil.MboxInfo("공정이 등록되었습니다.");
+                DataGridViewFill();
+            }
+            else
+                MboxUtil.MboxError("오류가 발생했습니다.");
         }
 
         private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
@@ -123,17 +124,28 @@ namespace Cohesion_Project
 
             DateTime EndDate = dateTimePicker2.Value;
 
-            TimeSpan timedipp = (dateTimePicker1.Value) - (dateTimePicker2.Value);
-            timedipp = DateTime.
+            TimeSpan timedipp = (dateTimePicker2.Value) - (dateTimePicker1.Value);
+           // timedipp = TimeSpan.FromMinutes(Convert.ToDouble(timedipp));
 
-          //  textBox1.Text = timedipp.Minutes.ToString();
-            textBox1.Text = a.ToString();
+            textBox1.Text = timedipp.ToString();
 
+        }
 
+        private void button4_Click(object sender, EventArgs e)
+        {
+            DateTime tb4 = Convert.ToDateTime(textBox4.Text);
+            // DateTime dt = Convert.ToDateTime(tb4).AddMinutes(Convert.ToDouble(textBox4.Text));
+            TimeSpan timedipp = dateTimePicker2.Value - tb4;
 
+            textBox1.Text = timedipp.ToString();
+        }
 
-
-
+        private void button2_Click(object sender, EventArgs e)
+        {
+            DateTime tb4 = Convert.ToDateTime(textBox4.Text);
+           
+            DateTime timedipp = dateTimePicker2.Value.AddMinutes(Convert.ToDouble(tb4));
+            textBox1.Text = timedipp.ToString();
         }
 
 
